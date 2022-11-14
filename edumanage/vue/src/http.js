@@ -2,7 +2,9 @@ import {getCookie} from './components/global/cookie';
 import axios from 'axios';
 import {showFullScreenLoading,tryHideFullScreenLoading } from './loading.js'
 axios.defaults.timeout = 5000; //超时终止请求
-axios.defaults.baseURL ='http://localhost:8080/'; //配置请求地址
+axios.defaults.baseURL = '/api'; //配置请求地址
+// axios.defaults.withCredentials = false; // 携带cookie
+// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // 判断是否为ajax请求
 import router from '../router/index'
 
 

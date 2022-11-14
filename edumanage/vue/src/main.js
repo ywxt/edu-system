@@ -18,7 +18,7 @@ Vue.prototype.$post=post;
 Vue.prototype.$fetch=fetch;
 Vue.prototype.$patch=patch;
 Vue.prototype.$put=put;
-axios.defaults.baseURL='http://localhost:8080'
+axios.defaults.baseURL='/api'
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
 Vue.config.productionTip = false

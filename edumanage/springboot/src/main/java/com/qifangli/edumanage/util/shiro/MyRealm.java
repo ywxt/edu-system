@@ -16,6 +16,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+
 import javax.annotation.Resource;
 
 import java.util.HashSet;
@@ -41,27 +42,27 @@ public class MyRealm extends AuthorizingRealm {
         List<Permission> permissions = null;
         int tlog = 8;
         int slog = 10;
-        if(username==null){
+        if (username == null) {
             return null;
         }
-        if(username.length()==slog){
+        if (username.length() == slog) {
             simpleAuthorizationInfo.addRole("student");
             permissions = permissionService.findPermsByRid("student");
-        }else if(username.length()==tlog){
+        } else if (username.length() == tlog) {
             Teacher teacher = teacherService.findTeacherById(username);
             Role role = roleService.findRoleByUserId(teacher.getId());
-            if(role==null){
+            if (role == null) {
                 simpleAuthorizationInfo.addRole("teacher");
                 permissions = permissionService.findPermsByRid("teacher");
-            }else {
+            } else {
                 simpleAuthorizationInfo.addRole(role.getRid());
                 permissions = permissionService.findPermsByRid(role.getRid());
             }
-        }else {
+        } else {
             return null;
         }
         Set<String> perms = new HashSet<>();
-        for(Permission item: permissions){
+        for (Permission item : permissions) {
             perms.add(item.getPermsCode());
         }
         simpleAuthorizationInfo.addStringPermissions(perms);
@@ -74,8 +75,8 @@ public class MyRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        String username = (String)authenticationToken.getPrincipal();
-        String password = new String((char[])authenticationToken.getCredentials());
+        String username = (String) authenticationToken.getPrincipal();
+        String password = new String((char[]) authenticationToken.getCredentials());
         // 解密获得username，用于和数据库进行对比
         System.out.println("认证 run");
         int tlog = 8;
@@ -84,18 +85,18 @@ public class MyRealm extends AuthorizingRealm {
             throw new AuthenticationException("token 无效！");
         }
         String pwd = null;
-        if(username.length()==slog){
+        if (username.length() == slog) {
             Student student = studentService.findStudentById(username);
             pwd = student.getPass();
-        }else if(username.length()==tlog){
+        } else if (username.length() == tlog) {
             Teacher teacher = teacherService.findTeacherById(username);
             pwd = teacher.getPass();
         }
         if (pwd == null) {
-            throw new AuthenticationException("用户"+username+"不存在") ;
+            throw new AuthenticationException("用户" + username + "不存在");
         }
-        if (!pwd.equals(password)){
-            throw new AuthenticationException(username+"密码错误") ;
+        if (!pwd.equals(password)) {
+            throw new AuthenticationException(username + "密码错误");
         }
         return new SimpleAuthenticationInfo(username, pwd, "myRealm");
     }

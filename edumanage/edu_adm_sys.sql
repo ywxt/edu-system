@@ -301,7 +301,7 @@ INSERT INTO `tbl_spot` VALUES ('0102', '教学楼A区', 'A102');
 INSERT INTO `tbl_spot` VALUES ('0103', '教学楼A区', 'A103');
 INSERT INTO `tbl_spot` VALUES ('0104', '教学楼A区', 'A201');
 INSERT INTO `tbl_spot` VALUES ('0105', '教学楼A区', 'A202');
-INSERT INTO `tbl_spot` VALUES ('0106', '教学楼A区', 'A103');
+INSERT INTO `tbl_spot` VALUES ('0106', '教学楼A区', 'A104');
 INSERT INTO `tbl_spot` VALUES ('0201', '教学楼B区', 'B101');
 INSERT INTO `tbl_spot` VALUES ('0202', '教学楼B区', 'B102');
 INSERT INTO `tbl_spot` VALUES ('0301', '第一实验楼', '401');
@@ -446,6 +446,11 @@ INSERT INTO `tbl_term` VALUES (20191, '2018-2019第二学年');
 INSERT INTO `tbl_term` VALUES (20192, '2019-2020第一学年');
 INSERT INTO `tbl_term` VALUES (20201, '2019-2020第二学年');
 INSERT INTO `tbl_term` VALUES (20202, '2020-2021第一学年');
+INSERT INTO `tbl_term` VALUES (20211, '2020-2021第二学年');
+INSERT INTO `tbl_term` VALUES (20212, '2021-2022第一学年');
+INSERT INTO `tbl_term` VALUES (20221, '2021-2022第二学年');
+INSERT INTO `tbl_term` VALUES (20222, '2022-2023第一学年');
+INSERT INTO `tbl_term` VALUES (20231, '2022-2023第二学年');
 
 -- ----------------------------
 -- Table structure for user_role

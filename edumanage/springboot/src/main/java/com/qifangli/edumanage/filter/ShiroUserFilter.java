@@ -20,11 +20,11 @@ public class ShiroUserFilter extends UserFilter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         System.out.println("shirofilter run");
         if (httpRequest.getMethod().equals(RequestMethod.OPTIONS.name())) {
-            httpResponse.setHeader("Access-control-Allow-Origin", "http://localhost:81");
+            httpResponse.setHeader("Access-control-Allow-Origin", "http://localhost");
             httpResponse.setHeader("Access-Control-Allow-Methods", "POST,PUT, GET, OPTIONS, DELETE");
             httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
             httpResponse.setHeader("Access-Control-Max-Age", "3600");
-            httpResponse.setHeader("Access-Control-Allow-Headers", ":x-requested-with,content-type,token");
+            httpResponse.setHeader("Access-Control-Allow-Headers", "*");
             httpResponse.setStatus(HttpStatus.OK.value());
             return false;
         }
@@ -41,11 +41,11 @@ public class ShiroUserFilter extends UserFilter {
         HttpServletRequest httpReq = WebUtils.toHttp(request);
 
         /*系统重定向会默认把请求头清空，这里通过拦截器重新设置请求头，解决跨域问题*/
-        httpResp.setHeader("Access-control-Allow-Origin", "http://localhost:81");
+        httpResp.setHeader("Access-control-Allow-Origin", "http://localhost");
         httpResp.setHeader("Access-Control-Allow-Methods", "POST,PUT, GET, OPTIONS, DELETE");
         httpResp.setHeader("Access-Control-Allow-Credentials", "true");
         httpResp.setHeader("Access-Control-Max-Age", "3600");
-        httpResp.setHeader("Access-Control-Allow-Headers", ":x-requested-with,content-type,token");
+        httpResp.setHeader("Access-Control-Allow-Headers", "*");
 
         if ("OPTIONS".equals(httpReq.getMethod())) {
             httpResp.setStatus(200);

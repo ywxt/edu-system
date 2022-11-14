@@ -187,7 +187,7 @@
   ref="upload"
   multiple="false"
   accept=".xls,.xlsx"
-  action="http://47.93.85.24:8080/stuAdmin/upload"
+  action="/api/stuAdmin/upload"
   with-credentials="true" 
   :on-success="handleAvatarSuccess"
   :file-list="fileList"
